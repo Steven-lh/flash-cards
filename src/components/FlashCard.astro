@@ -1,0 +1,128 @@
+---
+const { question, answer } = Astro.props;
+import { flashcards } from "../data/flashcards";
+import ProgressBar from "./ProgressBar.astro";
+---
+
+<section
+  class="h-full mt-5 pb-2 border-3 border-gray-300 rounded-2xl flex flex-col"
+>
+  <div id="card" class="h-[80%] p-2">
+    <div
+      class="frontCard h-full w-full bg-gray-100 rounded-xl flex justify-center items-center"
+    >
+      <p class="font-extrabold text-3xl">{question}</p>
+    </div>
+    <div
+      class="backCard h-full w-full bg-gray-100 rounded-xl hidden flex justify-center items-center"
+    >
+      <p
+        class="font-extrabold text-3xl text-balance text-center leading-relaxed"
+      >
+        {answer}
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="h-[20%] bg-gray-100 rounded-xl mr-2 ml-2 flex items-center justify-between"
+  >
+    <button
+      class="previous-card w-35 h-13 text-xl ml-3 text-black/80 hover:scale-115 transition flex gap-2 justify-center items-center"
+      ><svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left text-black/80"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M15 6l-6 6l6 6"></path></svg
+      >Previous</button
+    >
+    <button
+      class="show-answer w-35 h-13 font-bold text-xl hover:scale-115 transition"
+      >Show Answer</button
+    >
+    <button
+      class="next-card w-35 h-13 text-xl mr-3 text-black/80 hover:scale-115 transition flex gap-2 justify-center items-center"
+      >Next
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right text-black/80"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M9 6l6 6l-6 6"></path></svg
+      ></button
+    >
+  </div>
+</section>
+
+<script>
+  import { flashcards } from "../data/flashcards";
+
+  const showAnswer = document.querySelector(".show-answer");
+  const previousCard = document.querySelector(".previous-card");
+  const nextCard = document.querySelector(".next-card");
+
+  const frontCard = document.querySelector(".frontCard");
+  const backCard = document.querySelector(".backCard");
+  const frontText = document.querySelector(".frontCard p");
+  const backText = document.querySelector(".backCard p");
+  let currentIndex = 0;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    notifyProgress();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!showAnswer || !frontCard || !backCard) return;
+    if (e.target === showAnswer) {
+      frontCard.classList.toggle("hidden");
+      backCard.classList.toggle("hidden");
+
+      showAnswer.textContent = backCard?.classList.contains("hidden")
+        ? "Show Answer"
+        : "Hide Answer";
+    }
+
+    if (e.target === previousCard) {
+      currentIndex = (currentIndex - 1 + flashcards.length) % flashcards.length;
+      updateCards();
+      notifyProgress();
+    }
+    if (e.target === nextCard) {
+      currentIndex = (currentIndex + 1 + flashcards.length) % flashcards.length;
+      updateCards();
+      notifyProgress();
+    }
+  });
+
+  function notifyProgress() {
+    document.dispatchEvent(
+      new CustomEvent("flashcard-change", {
+        detail: { index: currentIndex },
+      })
+    );
+  }
+
+  function updateCards() {
+    if (!frontText || !backText || !showAnswer) return;
+
+    frontText.textContent = flashcards[currentIndex].question;
+    backText.textContent = flashcards[currentIndex].answer;
+
+    backCard?.classList.add("hidden");
+    frontCard?.classList.remove("hidden");
+    showAnswer.textContent = `Show Answer`;
+  }
+</script>

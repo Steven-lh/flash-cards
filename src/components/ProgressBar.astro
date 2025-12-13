@@ -1,5 +1,38 @@
-<section class="relative flex items-center w-full h-20 rounded-2xl border-3 border-gray-300 mt-4">
-    <div class="w-[10%] h-[90%] mr-1 ml-1 bg-gray-300 rounded-xl">
-    </div>
-    <p class="flex absolute font-bold text-2xl self-center right-0 mr-3">0 of 10</p>
+---
+import FlashCard from "./FlashCard.astro";
+import { flashcards } from "../data/flashcards";
+---
+
+<section
+  class="relative flex items-center w-full h-20 rounded-2xl border-3 border-gray-300 mt-4"
+>
+  <div class="progress-bar h-[90%] mr-1 ml-1 bg-gray-300 rounded-xl transition-all"></div>
+  <p
+    class="number-cards flex absolute font-bold text-2xl self-center right-0 mr-3"
+  >
+    1 of 10
+  </p>
 </section>
+
+<script>
+  import { flashcards } from "../data/flashcards";
+
+  const progressBar = document.querySelector(".progress-bar") as HTMLElement;
+  const numberCards = document.querySelector(".number-cards");
+  
+  function updateProgress(index: number) {
+      
+      if (!numberCards) return;
+      let current = index + 1;
+   
+    const progress = (current / flashcards.length) * 100;
+    progressBar.style.width = `${progress}%`;
+    
+    numberCards.textContent = `${current + " of " + flashcards.length}`;
+  }
+
+  document.addEventListener("flashcard-change", e => {
+    const event = e as CustomEvent<{ index: number }>;
+    updateProgress(event.detail.index);
+  });
+</script>
