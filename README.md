@@ -1,46 +1,173 @@
-# Astro Starter Kit: Basics
+# Flash Cards App
 
-```sh
-pnpm create astro@latest -- --template basics
+This is a **Flash Cards** project built with **Astro** as part of the [roadmap.sh Flash Cards project](https://roadmap.sh/projects/flash-cards). The goal is to create a simple study application where users can review questions and answers using interactive cards and track their progress.
+
+---
+
+## Description
+
+The application displays a set of flash cards containing questions and answers. Users can flip cards to reveal answers, navigate between cards, and visualize their progress through a progress bar.
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+* **Node.js** (v18 or later recommended)
+* One of the following package managers:
+
+  * **pnpm** (recommended)
+  * **npm**
+  * **yarn**
+
+---
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Steven-lh/flash-cards.git
+cd flash-cards
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+### 2. Install dependencies
 
-Inside of your Astro project, you'll see the following folders and files:
+#### Using **pnpm** (recommended)
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```bash
+pnpm install
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+#### Using **npm**
 
-## 🧞 Commands
+```bash
+npm install
+```
 
-All commands are run from the root of the project, from a terminal:
+#### Using **yarn**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+```bash
+yarn install
+```
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Running the project
+
+Start the development server:
+
+#### pnpm
+
+```bash
+pnpm dev // pnpm run dev
+```
+
+#### npm
+
+```bash
+npm run dev // npm run dev
+```
+
+#### yarn
+
+```bash
+yarn dev // yarn run dev
+```
+
+The application will be available at:
+
+```
+http://localhost:4321
+```
+
+---
+
+## Build for production
+
+To generate the production build:
+
+#### pnpm
+
+```bash
+pnpm build // pnpm run build
+```
+
+#### npm
+
+```bash
+npm run build
+```
+
+#### yarn
+
+```bash
+yarn build
+```
+
+To preview the production build locally:
+
+```bash
+pnpm preview
+```
+
+(or the equivalent command for npm/yarn)
+
+---
+
+## Project Structure
+
+```
+flash-cards/
+├─ public/
+├─ src/
+│  ├─ components/
+│  │  ├─ Card.astro
+│  │  ├─ ProgressBar.astro
+│  ├─ data/
+│  │  └─ flashcards.json
+│  ├─ layouts/
+│  └─ pages/
+│     └─ index.astro
+├─ astro.config.mjs
+├─ package.json
+├─ pnpm-lock.yaml
+└─ README.md
+```
+
+## Example Data (`flashcards.json`)
+
+```json
+[
+  {
+    id: 1,
+    question: "What is JavaScript?",
+    answer: "A programming language mainly used for web development."
+  },
+  {
+    question: "What is Astro?",
+    answer: "A modern web framework for building fast, content-focused websites."
+  }
+]
+```
+
+---
+
+## Roadmap.sh Reference
+
+This project follows the requirements defined in:
+
+👉 [https://roadmap.sh/projects/flash-cards](https://roadmap.sh/projects/flash-cards)
+
+---
+
+## Contact
+
+If you have suggestions or feedback, feel free to open an issue or reach out via GitHub.
+
+---
+
+Thanks.
