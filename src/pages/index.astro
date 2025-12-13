@@ -1,30 +1,43 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import FlashCard from '../components/FlashCard.astro';
-import ProgressBar from '../components/ProgressBar.astro';
+import Layout from "../layouts/Layout.astro";
+import FlashCard from "../components/FlashCard.astro";
+import ProgressBar from "../components/ProgressBar.astro";
 
-import {flashcards} from "../data/flashcards.js"
-
+import { flashcards } from "../data/flashcards.js";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout title="Flash Cards">
-	<main class="w-[60%] h-[70%] flex flex-col">
-		<p class="text-4xl font-bold">Flash Cards</p>
-		<ProgressBar />
-		<section id="flash-card-container" class="h-full">
-				<FlashCard 
-				question = {flashcards[0].question}
-				answer = {flashcards[0].answer}
-				/>
-		</section>
-	</main>
+  <main
+    class="w-full
+    max-w-sm
+    h-[85svh]
+    sm:max-w-md
+    md:w-[80%]
+    md:max-w-none
+    md:h-[75svh]
+    lg:w-[70%]
+    lg:h-[80svh]
+    flex flex-col
+    px-3
+    sm:px-0
+    mx-auto"
+  >
+    <p class="text-4xl font-bold">Flash Cards</p>
+    <ProgressBar />
+    <section id="flash-card-container" class="h-full">
+      <FlashCard
+        question={flashcards[0].question}
+        answer={flashcards[0].answer}
+      />
+    </section>
+  </main>
 </Layout>
 
 <style is:global>
-	body{
-		font-family: monospace;
-	}
+  body {
+    font-family: monospace;
+  }
 </style>
