@@ -1,12 +1,58 @@
-# Flash Cards App
+# GitHub Repository Finder
 
-This is a **Flash Cards** project built with **Astro** as part of the [roadmap.sh Flash Cards project](https://roadmap.sh/projects/flash-cards). The goal is to create a simple study application where users can review questions and answers using interactive cards and track their progress.
+This is a **GitHub Repository Finder** project built with **Astro**, focused on practicing **API integration**, **asynchronous JavaScript**, and **UI state management**.
+
+The application allows users to select a programming language and fetch a **random GitHub repository** related to that language.
 
 ---
 
 ## Description
 
-The application displays a set of flash cards containing questions and answers. Users can flip cards to reveal answers, navigate between cards, and visualize their progress through a progress bar.
+The app fetches data from **two external sources**:
+
+1. **Programming languages list** (static JSON)
+2. **GitHub Repository Search API**
+
+Users can:
+
+* Select a programming language from a dropdown
+* Fetch a random repository related to that language
+* View key repository information:
+
+  * Name
+  * Description
+  * Language
+  * Stars
+  * Forks
+  * Open issues
+* Click a **Refresh** button to get another random repository.
+
+The application properly handles:
+
+* Loading states
+* Empty results
+* API errors (including GitHub rate limits)
+
+---
+
+## Tech Stack
+
+* **Astro**
+* **Vanilla JavaScript**
+* **Tailwind CSS**
+* **GitHub REST API**
+
+---
+
+## External APIs & Resources
+
+* **GitHub Repository Search API**
+  [https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories](https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories)
+
+* **Programming Language Data (JSON)**
+  [https://raw.githubusercontent.com/kamranahmedse/githunt/master/src/components/filters/language-filter/languages.json](https://raw.githubusercontent.com/kamranahmedse/githunt/master/src/components/filters/language-filter/languages.json)
+
+---
 
 ## Getting Started
 
@@ -28,27 +74,27 @@ Make sure you have the following installed:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Steven-lh/flash-cards.git
-cd flash-cards
+git clone https://github.com/Steven-lh/github-random-repo-finder.git
+cd ../github-random-repo-finder
 ```
 
 ---
 
 ### 2. Install dependencies
 
-#### Using **pnpm** (recommended)
+#### Using pnpm (recommended)
 
 ```bash
 pnpm install
 ```
 
-#### Using **npm**
+#### Using npm
 
 ```bash
 npm install
 ```
 
-#### Using **yarn**
+#### Using yarn
 
 ```bash
 yarn install
@@ -56,26 +102,16 @@ yarn install
 
 ---
 
-## Running the project
+## Running the Project
 
 Start the development server:
 
-#### pnpm
-
 ```bash
-pnpm dev // pnpm run dev
-```
-
-#### npm
-
-```bash
-npm run dev // npm run dev
-```
-
-#### yarn
-
-```bash
-yarn dev // yarn run dev
+pnpm dev
+# or
+npm run dev
+# or
+yarn dev
 ```
 
 The application will be available at:
@@ -86,81 +122,67 @@ http://localhost:4321
 
 ---
 
-## Build for production
-
-To generate the production build:
-
-#### pnpm
+## Build for Production
 
 ```bash
-pnpm build // pnpm run build
-```
-
-#### npm
-
-```bash
+pnpm build
+# or
 npm run build
-```
-
-#### yarn
-
-```bash
+# or
 yarn build
 ```
 
-To preview the production build locally:
+Preview the production build:
 
 ```bash
 pnpm preview
 ```
-
-(or the equivalent command for npm/yarn)
 
 ---
 
 ## Project Structure
 
 ```
-flash-cards/
+github-random-repo-finder/
 ├─ public/
 ├─ src/
+│  ├─ assets/
 │  ├─ components/
-│  │  ├─ Card.astro
-│  │  ├─ ProgressBar.astro
-│  ├─ data/
-│  │  └─ flashcards.json
+│  │  ├─ Header.astro
+│  │  ├─ LanguageSelector.astro
+│  │  ├─ RepositoryPreview.astro
 │  ├─ layouts/
-│  └─ pages/
-│     └─ index.astro
+│  │  └─ Layout.astro
+│  ├─ pages/
+│  │  └─ index.astro
+│  ├─ styles/
+│  │  └─ global.css
 ├─ astro.config.mjs
 ├─ package.json
 ├─ pnpm-lock.yaml
+├─ tsconfig.json
 └─ README.md
-```
-
-## Example Data (`flashcards.json`)
-
-```json
-[
-  {
-    id: 1,
-    question: "What is JavaScript?",
-    answer: "A programming language mainly used for web development."
-  },
-  {
-    question: "What is Astro?",
-    answer: "A modern web framework for building fast, content-focused websites."
-  }
-]
 ```
 
 ---
 
-## Roadmap.sh Reference
+## Project Goals
 
-This project follows the requirements defined in:
+This project is designed to help you practice:
 
-👉 [https://roadmap.sh/projects/flash-cards](https://roadmap.sh/projects/flash-cards)
+* Working with **external APIs**
+* Handling **asynchronous requests** using `fetch`
+* Managing **UI states** (loading, error, empty)
+* Component-based structure in Astro
+* Building a responsive and user-friendly interface
+
+---
+
+## Reference
+
+This project follows the requirements described in:
+
+[https://roadmap.sh/projects/github-random-repo](https://roadmap.sh/projects/github-random-repo)
 
 ---
 
